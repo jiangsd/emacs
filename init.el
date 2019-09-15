@@ -7,8 +7,33 @@
 (require 'evil)
 (evil-mode 1)
 
-
 (require 'package)
+
+(require 'ido)
+(ido-mode t)
+
+(tool-bar-mode -1)
+
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+
+(load "~/.emacs.d/centaur-tabs")
+(require 'centaur-tabs)
+
+(load "~/.emacs.d/treemacs")
+(require 'treemacs)
+
+;;(use-package centaur-tabs
+;;  :demand
+;;  :config
+;;  (centaur-tabs-mode t)
+;;  :bind
+;;  ("C-<prior>" . centaur-tabs-backward)
+;;  ("C-<next>" . centaur-tabs-forward))
 
 (add-to-list 'package-archives
      '("melpa" . "http://melpa.org/packages/") t)
@@ -59,10 +84,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (material-theme better-defaults))))
+ '(package-selected-packages
+   (quote
+    (treemacs-evil treemacs centaur-tabs use-package material-theme better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'dired-find-alternate-file 'disabled nil)
